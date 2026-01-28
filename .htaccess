@@ -1,0 +1,124 @@
+# Enable Rewrite
+RewriteEngine On
+
+
+
+# Prevent redirect loops
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} !^www\.orlandothrivetherapy\.com$ [NC]
+RewriteRule ^(.*)$ https://www.orlandothrivetherapy.com/$1 [L,R=301]
+
+# Remove index.html in any folder
+RewriteRule ^(.*/)?index\.html$ /$1 [R=301,L]
+
+
+
+
+# ---------------------------
+# Security Headers
+# ---------------------------
+#Force HTTPS
+Header always set Content-Security-Policy "upgrade-insecure-requests"
+
+# HSTS: Enforce HTTPS for 2 years, include subdomains, preload list
+Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+
+# Prevent clickjacking
+Header always set X-Frame-Options "SAMEORIGIN"
+
+# Prevent MIME-type sniffing
+Header always set X-Content-Type-Options "nosniff"
+
+# Basic XSS protection
+Header always set X-XSS-Protection "1; mode=block"
+
+# Control referrer data sent
+Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+# ---------------------------
+
+# Custom 404 Page
+ErrorDocument 404 /404.html
+
+RedirectMatch 301 ^/mallory-hawkes.html/?$ /heather-oller.html
+
+# Blog
+Redirect 301 /orlando-marriage-therapist-five-important-tips/ /blog/2017/orlando-marriage-therapist-five-important-tips.html
+
+# Trailing slash fixes
+Redirect 301 /life-coaching.html/ /life-coaching.html
+Redirect 301 /anxiety-therapy.html/ /anxiety-therapy.html
+Redirect 301 /individual-therapy.html/ /individual-therapy.html
+Redirect 301 /emdr-therapy.html/ /emdr-therapy.html
+Redirect 301 /women-therapy.html/ /women-therapy.html
+Redirect 301 /services-offered.html/ /services-offered.html
+
+# Contact
+Redirect 301 /contact /contact.html
+
+# Team / staff pages → Team
+Redirect 301 /nides-colon.html /team.html
+Redirect 301 /debra- /team.html
+Redirect 301 /debra-… /team.html
+Redirect 301 /orlando-counselors/ /team.html
+Redirect 301 /constance- /team.html
+Redirect 301 /nides-vasquez.html /team.html
+Redirect 301 /delaney-silvestri.html /team.html
+Redirect 301 /kim-breton.html /team.html
+Redirect 301 /calena-lllan.html /team.html
+Redirect 301 /tristan-marcus.html /team.html
+
+# Service consolidations
+Redirect 301 /animal-assisted-therapy.html /services-offered.html
+
+# Relationship / couples content
+Redirect 301 /orlando-divorce-mediation-uncontested-divorce/ /relationship-therapy.html
+Redirect 301 /affairs-marriage-orlando-couples-therapy /relationship-therapy.html
+Redirect 301 /couples-counseling-orlando-marriage/ /relationship-therapy.html
+Redirect 301 /orlando-divorce-mediation /relationship-therapy.html
+
+
+# Redirect ALL traffic (HTTP, non-www, addon domains) to https://www.orlandothrivetherapy.com
+RewriteCond %{HTTP_HOST} !^www\.orlandothrivetherapy\.com$ [NC,OR]
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://www.orlandothrivetherapy.com/$1 [L,R=301]
+
+# ---------------------------
+# Enable Gzip Compression for text files
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/plain
+  AddOutputFilterByType DEFLATE text/html
+  AddOutputFilterByType DEFLATE text/xml
+  AddOutputFilterByType DEFLATE text/css
+  AddOutputFilterByType DEFLATE application/xml
+  AddOutputFilterByType DEFLATE application/xhtml+xml
+  AddOutputFilterByType DEFLATE application/rss+xml
+  AddOutputFilterByType DEFLATE application/javascript
+  AddOutputFilterByType DEFLATE application/vnd.ms-fontobject
+  AddOutputFilterByType DEFLATE font/opentype
+  AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# ---------------------------
+# Cache Control
+<IfModule mod_expires.c>
+  ExpiresActive On
+  # Long-term caching for versioned static files
+  ExpiresByType image/jpg "access 1 year"
+  ExpiresByType image/jpeg "access 1 year"
+  ExpiresByType image/gif "access 1 year"
+  ExpiresByType image/png "access 1 year"
+  ExpiresByType image/svg+xml "access 1 year"
+  # Shorter caching for files that may change
+  ExpiresByType text/css "access 1 month"
+  ExpiresByType application/javascript "access 1 month"
+  ExpiresDefault "access 1 month"
+</IfModule>
+
+# ---------------------------
+# php -- BEGIN cPanel-generated handler, do not edit
+<IfModule mime_module>
+  AddHandler application/x-httpd-ea-php81 .php .php8 .phtml
+</IfModule>
+# php -- END cPanel-generated handler
+
