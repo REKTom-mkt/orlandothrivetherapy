@@ -32,7 +32,19 @@
         <script src="js/html5shiv.js"></script>
         <script src="js/respond.min.js"></script>
     <![endif]-->
-
+    <style>
+        /* Fix nav overflow - 7 items need narrower width */
+        @media (min-width: 768px) {
+            .navbar-nav > li {
+                width: 14.28% !important;
+            }
+            .navbar-nav > li > a {
+                padding-left: 8px !important;
+                padding-right: 8px !important;
+                font-size: 0.95em !important;
+            }
+        }
+    </style>
 
 </head>
 
@@ -308,12 +320,26 @@
 
 
 
-	<div class="section-lgray section-md clearfix">
+	<div class="section-lgray section-lg clearfix">
 		<div class="container text-center">
-			<h3 class="spacer-3">Specialized Relationship Support</h3>
-			<p class="fs16 js-reg spacer-3">Explore our focused relationship counseling services:</p>
-			<a href="couples-therapy-orlando.html" class="btn btn-pink spacer-2" style="display: inline-block; width: auto; padding: 15px 30px; margin: 0 10px;">Couples Therapy</a>
-			<a href="marriage-counseling-orlando.html" class="btn btn-pink" style="display: inline-block; width: auto; padding: 15px 30px; margin: 0 10px;">Marriage Counseling</a>
+			<h3 class="dpink spacer-3">Specialized Relationship Support</h3>
+			<p class="fs16 js-reg spacer-3">Looking for focused support for your relationship? Explore our specialized counseling services:</p>
+			<div class="row">
+				<div class="col-sm-6 spacer-3-mb">
+					<div class="section-white pad30" style="height: 100%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+						<h4 class="dpink spacer-2">Couples Therapy</h4>
+						<p class="js-reg spacer-3">Using the Gottman Method, our couples therapists help partners improve communication, rebuild trust, and strengthen their connection.</p>
+						<a href="couples-therapy-orlando.html" class="btn btn-pink hvr-shutter-out-vertical">Learn About Couples Therapy</a>
+					</div>
+				</div>
+				<div class="col-sm-6 spacer-3-mb">
+					<div class="section-white pad30" style="height: 100%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+						<h4 class="dpink spacer-2">Marriage Counseling</h4>
+						<p class="js-reg spacer-3">Our licensed marriage counselors help couples navigate challenges, heal from conflict, and build a stronger foundation for the future.</p>
+						<a href="marriage-counseling-orlando.html" class="btn btn-pink hvr-shutter-out-vertical">Learn About Marriage Counseling</a>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 

@@ -27,7 +27,19 @@
         <script src="js/html5shiv.js"></script>
         <script src="js/respond.min.js"></script>
     <![endif]-->
-
+    <style>
+        /* Fix nav overflow - 7 items need narrower width */
+        @media (min-width: 768px) {
+            .navbar-nav > li {
+                width: 14.28% !important;
+            }
+            .navbar-nav > li > a {
+                padding-left: 8px !important;
+                padding-right: 8px !important;
+                font-size: 0.95em !important;
+            }
+        }
+    </style>
 
 </head>
 
